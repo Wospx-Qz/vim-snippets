@@ -140,9 +140,91 @@ snippet detail "Disclosure"
 </details>
 endsnippet
 
+snippet mk "inline equation" iA
+$$1$$0
+endsnippet
+
+snippet MK "Display equation" iA
+$$
+$1
+$$
+$0
+endsnippet
+
 post_jump "create_table(snip)"
 snippet "tb([1-9][1-9])" "Fancy table" br
 `!p snip.rv = match.group(1)`
+endsnippet
+
+snippet '(?<!\\)([0-9])([0-9])tb' "new table" r
+$1`!p 
+x=match.group(1)
+y=match.group(2)
+row1=""
+row2="" 
+for i in range(int(x)):
+    row1+="| "
+    row2+="|:-:"
+row1+="|\n"
+row2+="|\n"
+out=row1+row2+int(y)*row1
+snip.rv=out
+`$0
+endsnippet
+
+snippet '([0-9])l' "title level" br
+`!p
+x = match.group(1)
+out = ""
+for i in range(int(x)):
+	out += "#"
+out += ' '
+snip.rv = out
+`$0
+endsnippet
+
+snippet flowchart "flowchart of mermaid" b
+\`\`\`mermaid
+flowchart
+a --> b
+c --> d
+\`\`\`
+$0
+endsnippet
+
+snippet yes "right mark" i 
+$\checkmark$
+endsnippet
+
+snippet no "no mark" i 
+$\times$
+endsnippet
+
+snippet to "arrowleft" i 
+$\to$
+endsnippet
+
+snippet get "arrowright" i 
+$\gets$
+endsnippet
+
+snippet up "arrowup" i 
+$\uparrow$
+endsnippet
+
+snippet down "arrowdown" i 
+$\downarrow$
+endsnippet
+
+snippet br "<br>" i 
+<br>
+endsnippet
+
+snippet "cs" "custom-style" br
+:::{custom-style='$1'}
+$2
+:::
+$0
 endsnippet
 
 # vim:ft=snippets:
